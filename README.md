@@ -9,7 +9,9 @@ Asegurate de tener iniciado Apache (servidor web) y MySQL (base de datos) desde 
 3. Ejecutar el comando `git submodule update --init --recursive` para reconstruir los sub-módulos
 4. Ejecutar el comando `docker compose up --build`
 
-### Pasos para crear los Git Submodules
+### 2. Crea tu archivo index.php para la página principal. 
+NOTA: Si vas a utilizar código PHP dentro del archivo la extensión tiene que ser `.php` y no `.html`
+
 
 
 1. Crear un nuevo repositorio en GitHub
