@@ -3,6 +3,7 @@
 
 ### 1. Iniciar servicios
 Asegurate de tener iniciado Apache (servidor web) y MySQL (base de datos) desde la interfaz de XAMPP.
+![alt text](img/apache.png)
 
 2. Crear un .env basado en el .env.example
 3. Ejecutar el comando `git submodule update --init --recursive` para reconstruir los sub-módulos
