@@ -18,30 +18,24 @@
     <div class="m-4">
 
         <h2 class="mt-4">Bienvenido <?php echo $_SESSION['username']; ?> </h2>
-        <?php 
-        include 'conexion.php'; 
+        <?php
+        include 'conexion.php';  // Incluimos el archivo de conexión
+        // Definimos las variables para almacenar la misión y visión
         $sqlMision = "SELECT * FROM `generalidades` WHERE `clave` = 'mision'";
         $sqlVision = "SELECT * FROM `generalidades` WHERE `clave` = 'vision'";
 
         $resultMision = $conn->query(query: $sqlMision);
         $resultVision = $conn->query(query: $sqlVision);
-
         // Verificamos si resultMision tiene filas
         if ($resultMision->num_rows > 0) {
             $misionArray = $resultMision->fetch_assoc(); // Convertimos el resultado a array            
-        } else {
-            echo "No hay misión registrada.";
         }
-         // Verificamos si resultVision tiene filas
+        // Verificamos si resultVision tiene filas
         if ($resultVision->num_rows > 0) {
             $visionArray = $resultVision->fetch_assoc(); // Convertimos el resultado a array            
-        } else {
-            echo "No hay visión registrada.";
         }
-
-
         // Debemos de cerrar la conexión despues de usarla
-        $conn->close();
+        // $conn->close();
         ?>
 
         <hr>
@@ -50,6 +44,34 @@
 
         <h4>Visión</h4>
         <p><?php echo $visionArray["valor"]; ?></p>
+
+        <?php
+        $sql = "SELECT * FROM `producto`";
+        $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                // Guardar todos los resultados en un array
+                $productos = $result->fetch_all(MYSQLI_ASSOC);
+            } else {
+                echo "No hay productos registrados.";
+            }
+        $conn->close();
+        ?>
+
+        <!-- Iniciamos el ciclo -->
+        <?php foreach ($productos as $prod) { ?>
+        <div class="col-3 m-2">
+            <div class="card" style="width: 18rem;">
+                <img src="img/<?php echo $prod['foto1'];?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $prod["nombre"]; ?></h5>
+                    <p class="card-text"><?php echo $prod["descripcion"]; ?></p>
+                    <p class="card-text">Precio: Q <?php echo $prod["precio"]; ?></p>
+                    <a href="#" class="btn btn-primary">Ver detalle</a>
+                </div>
+            </div>
+        </div>
+        <!-- Acá colocamos el código en html y si necesitamos le incluimos código php que se va a repetir -->
+        <?php } ?> <!-- Cerramos el ciclo -->
 
     </div>
 
