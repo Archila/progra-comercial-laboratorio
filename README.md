@@ -108,3 +108,6 @@ Ejemplo
         <!-- Acá colocamos el código en html y si necesitamos le incluimos código php que se va a repetir -->
         <?php } ?> <!-- Cerramos el ciclo -->
 ```
+
+Página con plantillas HTML
+[Theme Wagon](https://themewagon.com/)
