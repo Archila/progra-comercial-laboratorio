@@ -1,15 +1,27 @@
 
 <?php
 session_start();
-if(isset($_POST["password"])) {
-    if ($_POST['password'] != 'admin123') {
-        $_SESSION['error'] = "La contraseña es incorrecta";    
-        
-    } else {
-        $_SESSION['username'] = $_POST['username'];
+
+include 'conexion.php';  // Incluimos el archivo de conexión
+
+if(isset($_POST["clave"])) {
+    // Obtenemos las variables del formulario de login
+    $username = $_POST['username'];
+    $clave = $_POST['clave'];
+
+    //Consultamos a la base de datos
+    $sql = "SELECT * FROM `usuarios` WHERE nombre = '$username' AND clave = '$clave';";
+    $result = $conn->query($sql);
+
+    if($result->num_rows == 0) {  // Si el usuario no existe, nos va a retornar 0 filas
+        $_SESSION['error'] = "El usuario no existe";
+        $conn->close();
+    } else { // Si hay al menos una fila, el usuario existe
+        $_SESSION['username'] =$username;
+        $conn->close();
         header("Location: index.php");
         exit();
-    }    
+    }
 }
 
 ?>
@@ -40,7 +52,7 @@ if(isset($_POST["password"])) {
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="clave">
                     </div>
                     <?php
                         if(isset($_SESSION['error'])){
