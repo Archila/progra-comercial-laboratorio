@@ -36,25 +36,6 @@ if ($conn->connect_error) {
 ### D. Crea tu archivo index.php para la página principal. 
 NOTA: Si vas a utilizar código PHP dentro del archivo la extensión tiene que ser `.php` y no `.html`
 
-1. Dentro de la ruta `C:\xampp\htdocs\` crea una nueva carpeta para tu nuevo proyecto. Dentro de esta carpeta vamos a estar creando nuestra página web. 
-2. Crea un archivo llamado `conexion.php` con las credenciales y la conexión a la base de datos, la estructura básica es la siguiente: 
-
-```
-<?php
-$servername = "localhost";  // Servidor (en XAMPP es localhost)
-$username = "root";       // Usuario por defecto en local o crear uno nuevo
-$password = "";           // Contraseña (vacía en XAMPP por defecto)
-$dbname = "tienda";  // Nombre de la base de datos
-
-// Crear conexión
-$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-?>
-```
 
 ### E. Obtener la misión y la visión. (Un solo registro por consulta)
 Para poder obtener la información de la base de datos en nuestro archivo debemos de cumplir con el siguiente código básico: 
