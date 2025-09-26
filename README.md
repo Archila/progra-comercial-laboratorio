@@ -68,7 +68,9 @@ Para poder obtener la información de la base de datos en nuestro archivo debemo
 ```
 
 ### F. Obtener productos. (Un array de registros)
-```<?php include 'conexion.php'; 
+```
+<?php 
+    include 'conexion.php'; 
     $sql = "SELECT p.nombre AS producto, p.precio, p.descripcion, p.foto1,  c.nombre AS categoria 
     FROM producto p 
     INNER JOIN categoria c ON p.id_categoria = c.id_categoria";
